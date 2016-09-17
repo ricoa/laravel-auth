@@ -30,7 +30,7 @@
                             <span class="dcjq-icon"></span></a>
                         <ul class="sub" style="display: none;">
                             @foreach($menu['sub'] as $menu)
-                                <li class="{!! Request::url("admin")==action($menu['action']) ? 'active' : '' !!}"><a href="{{ isset($menu['url'])?$menu['url']:action($menu['action']) }}">{{ $menu['title'] }}</a></li>
+                                <li class="{!! isset($menu['action'])?(Request::url("admin")==action($menu['action']) ? 'active' : ''):'' !!}"><a href="{{ isset($menu['url'])?$menu['url']:action($menu['action']) }}">{{ $menu['title'] }}</a></li>
                             @endforeach
                         </ul>
                     </li>
