@@ -11,6 +11,11 @@ return [
      * all menus
      */
     'menus'=>[
+ 	[
+            'title'=>'首页',
+            'action'=>'AdminController@index',
+            'active'=>'admin'
+        ],
         [
             'title'=>'测试',
             'sub'=>[

@@ -2,12 +2,6 @@
     <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <li>
-                <a href="/admin" class="{!! Request::is("admin") ? 'active' : '' !!}">
-                    <span class="title">首页</span>
-                </a>
-            </li>
-
             @foreach($menus as $menu)
                 @if(isset($menu['action']))
                     @if(isset($menu['url']))
