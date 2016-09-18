@@ -2,7 +2,7 @@
 
 namespace Ricoa\Auth\Controllers;
 
-use App\Criteria\WhereInCriteria;
+use Ricoa\Auth\Criteria\WhereInCriteria;
 use App\Http\Controllers\Controller;
 use DB;
 use Ricoa\Auth\Requests\CreateRoleRequest;
