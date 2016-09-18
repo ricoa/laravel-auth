@@ -14,7 +14,7 @@ class MenusServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 
     /**
@@ -31,10 +31,12 @@ class MenusServiceProvider extends ServiceProvider
 
         //publish a blade file
         $this->publishes([
-            __DIR__ . '/views/menu.blade.php' => resource_path('views/vendor/ricoa/menu.blade.php'),
+            __DIR__ . '/views/' => resource_path('views/'),
         ], 'config');
 
         $menu_blade=config('menus.blade','*.menu');
+
+        require __DIR__ . '/routes.php';
 
         view()->composer([$menu_blade],function($view){
 
