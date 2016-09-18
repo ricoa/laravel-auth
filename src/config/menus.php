@@ -27,6 +27,10 @@ return [
                     'title'=>'所有角色',
                     'action'=>'\Ricoa\Auth\Controllers\RoleController@index'
                 ],
+                [
+                    'title'=>'用户角色',
+                    'action'=>'\Ricoa\Auth\Controllers\RoleUserController@index'
+                ],
 
             ],
             'active'=>'admin/auth*'
