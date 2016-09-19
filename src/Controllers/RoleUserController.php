@@ -5,8 +5,8 @@ namespace Ricoa\Auth\Controllers;
 use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Ricoa\Auth\Criteria\WhereCriteria;
 use Ricoa\Auth\Models\Role;
 use Ricoa\Auth\Models\RoleUser;
 use Ricoa\Auth\Models\User;
@@ -30,9 +30,9 @@ class RoleUserController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $role_users = $this->roleUserRepository->with(['user','role'])->paginate(30);
+        $role_users = $this->roleUserRepository->pushCriteria(new RequestCriteria($request))->with(['user','role'])->paginate(30);
 
         return view('role_user.index')
             ->with('role_users', $role_users);

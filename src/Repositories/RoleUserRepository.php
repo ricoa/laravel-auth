@@ -8,6 +8,13 @@ use Ricoa\Auth\Models\RoleUser;
 class RoleUserRepository extends BaseRepository
 {
 
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'role_id',
+        'user_id'
+    ];
 
     /**
      * Configure the Model

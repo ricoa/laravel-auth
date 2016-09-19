@@ -34,6 +34,11 @@ class MenusServiceProvider extends ServiceProvider
             __DIR__ . '/views/' => resource_path('views/'),
         ], 'config');
 
+        //publish resources files
+        $this->publishes([
+            __DIR__ . '/resources/' => public_path('app/'),
+        ], 'config');
+
         $menu_blade=config('menus.blade','*.menu');
 
         require __DIR__ . '/routes.php';

@@ -10,7 +10,8 @@
                     <br><br>
                 </header>
                 <div class="panel-body">
-                   @include('flash::message')
+                    @include('role_user.search_fields')
+                    @include('flash::message')
                    @include('role_user.table')
                    {!! $role_users->render() !!}
                 </div>

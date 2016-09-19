@@ -10,8 +10,9 @@
                     <br><br>
                 </header>
                 <div class="panel-body">
-                   @include('flash::message')
-                   @include('permissions.table')
+                    @include('permissions.search_fields')
+                    @include('flash::message')
+                    @include('permissions.table')
                     {!! $permissions->render() !!}
                 </div>
             </section>

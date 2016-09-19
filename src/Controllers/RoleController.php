@@ -2,6 +2,8 @@
 
 namespace Ricoa\Auth\Controllers;
 
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Ricoa\Auth\Criteria\WhereInCriteria;
 use App\Http\Controllers\Controller;
 use DB;
@@ -30,9 +32,9 @@ class RoleController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $roles = $this->roleRepository->paginate(30);
+        $roles = $this->roleRepository->pushCriteria(new RequestCriteria($request))->paginate(30);
 
         return view('roles.index')
             ->with('roles', $roles);

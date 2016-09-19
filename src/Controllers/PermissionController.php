@@ -3,6 +3,8 @@
 namespace Ricoa\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Ricoa\Auth\Requests\CreatePermissionRequest;
 use Ricoa\Auth\Requests\UpdatePermissionRequest;
 use Ricoa\Auth\Repositories\PermissionRepository;
@@ -27,9 +29,9 @@ class PermissionController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->permissionRepository->orderBy('description')->orderBy('display_name');
+        $this->permissionRepository->pushCriteria(new RequestCriteria($request))->orderBy('description')->orderBy('display_name');
         $permissions = $this->permissionRepository->paginate(30);
 
         return view('permissions.index')
