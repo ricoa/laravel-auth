@@ -26,10 +26,10 @@ class MenusService{
         if($user->hasRole(config('menus.super','super'))){
             return $menus;
         }
-
         foreach ($menus as $key=> $menu){
             if(isset($menu['action'])){
-                if(!$user->can($menu['action'])){
+                $action=explode("@",$menu['action']);
+                if(!$user->can($menu['action'])&&!$user->can($action[0]."@*")){
                     unset($menus[$key]);
                 }
             }else{

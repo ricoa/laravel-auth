@@ -31,7 +31,8 @@ class Permission
 	public function handle($request, Closure $next)
 	{
         $action = str_replace("App\\Http\\Controllers\\","",Route::currentRouteAction());
-		if ($this->auth->guest() || (!$request->user()->hasRole(config('menus.super','super'))&&!$request->user()->can($action))) {
+        $actions=explode("@",$action);        //处理UserController@*
+        if ($this->auth->guest() || ((!$request->user()->hasRole(config('menus.super','super'))&&!$request->user()->can($action))&&!$request->user()->can($actions[0]."@*"))) {
 			abort(403);
 		}
 
