@@ -29,7 +29,7 @@ class MenusService{
         foreach ($menus as $key=> $menu){
             if(isset($menu['action'])){
                 $action=explode("@",$menu['action']);
-                if(!$user->can($menu['action'])&&!$user->can($action[0]."@*")){
+                if(!$user->can($menu['action'])&&!$user->can($action[0]."@_ALL")){
                     unset($menus[$key]);
                 }
             }else{
