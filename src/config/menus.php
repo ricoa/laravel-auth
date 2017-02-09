@@ -52,6 +52,12 @@ return [
             'web',
             'auth'
         ]
-    ]
+    ],
 
+    /**
+     *  don't validate auth in those action
+     */
+    'validateExcept'=>[
+        'UserController@index'
+    ]
 ];
