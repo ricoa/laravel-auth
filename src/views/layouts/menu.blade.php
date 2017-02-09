@@ -12,7 +12,7 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{ action($menu['action']) }}" class="{!! Request::url("admin")==action($menu['action']) ? 'active' : '' !!}">
+                            <a href="{{ action($menu['action']) }}" class="{!! Request::url()==action($menu['action']) ? 'active' : '' !!}">
                                 <span class="title">{{ $menu['title'] }}</span>
                             </a>
                         </li>
@@ -24,7 +24,15 @@
                             <span class="dcjq-icon"></span></a>
                         <ul class="sub" style="display: none;">
                             @foreach($menu['sub'] as $menu)
-                                <li class="{!! isset($menu['action'])?(Request::url("admin")==action($menu['action']) ? 'active' : ''):'' !!}"><a href="{{ isset($menu['url'])?$menu['url']:action($menu['action']) }}">{{ $menu['title'] }}</a></li>
+                                @if(isset($menu['url'])&&Request::getUri()==url($menu['url'])||!isset($menu['url'])&&isset($menu['action'])&&Request::getUri()==action($menu['action']))
+                                <li class="active">
+                                    <a href="{{ isset($menu['url'])?$menu['url']:action($menu['action']) }}">{{ $menu['title'] }}</a>
+                                </li>
+                                @else
+                                    <li>
+                                        <a href="{{ isset($menu['url'])?$menu['url']:action($menu['action']) }}">{{ $menu['title'] }}</a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>
