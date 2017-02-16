@@ -3,12 +3,12 @@
 return [
 
     /**
-     * blade to show menus
+     * 显示菜单的blade
      */
     'blade'=>'layouts.menu',
 
     /**
-     * all menus
+     * 全部菜单
      */
     'menus'=>[
         [
@@ -39,12 +39,12 @@ return [
     ],
 
     /**
-     * role who can see all menus
+     * 超级管理员账号，可以查看所有菜单和访问所有方法
      */
     'super'=>'super',
 
     /**
-     * route attributes
+     * 路由属性
      */
     'routeAttributes'=>[
         'prefix'=>'admin/auth',
@@ -55,7 +55,7 @@ return [
     ],
 
     /**
-     *  don't validate auth in those action
+     * 不进行权限判断的路由方法
      */
     'validateExcept'=>[
         'UserController@index'
