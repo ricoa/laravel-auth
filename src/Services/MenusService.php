@@ -2,11 +2,25 @@
 namespace Ricoa\Auth\Services;
 
 
+use Ricoa\Auth\Agent\DefaultMenusAgent;
+use Ricoa\Auth\Agent\MenusAgentInterface;
+
 class MenusService{
+
+    /**
+     * @var MenusAgentInterface
+     */
+    private $agent=null;
 
     public function __construct()
     {
-        $this->menus=config('menus.menus');
+        try{
+            $this->agent=app(config('menus.agent'));
+        }catch (\Exception $e){
+            $this->agent=app(DefaultMenusAgent::class);
+        }
+
+        $this->menus=$this->agent->menus();
     }
 
 
