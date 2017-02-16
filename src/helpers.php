@@ -3,7 +3,7 @@
 use Ricoa\Auth\Agent\DefaultMenusAgent;
 
 function can($user,$action){
-    //
+
     $agent=DefaultMenusAgent::getMenuAgent();
 
     if($agent->isSuperAdmin($user)){
