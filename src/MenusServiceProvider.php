@@ -52,7 +52,7 @@ class MenusServiceProvider extends ServiceProvider
         ], 'config');
 
         //migration
-        $this->publishMigration();
+        $this->publishSeeder();
     }
 
 
@@ -70,11 +70,11 @@ class MenusServiceProvider extends ServiceProvider
     }
 
 
-    public function publishMigration()
+    public function publishSeeder()
     {
         $migrationFile = base_path("/database/seeds")."/RicoaUsersSeeder.php";
 
-        $output = view()->make('ricoa::generators.migration')->render();
+        $output = view()->make('ricoa::generators.seeder')->render();
 
         if (!file_exists($migrationFile) && $fs = fopen($migrationFile, 'x')) {
             fwrite($fs, $output);

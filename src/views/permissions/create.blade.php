@@ -14,7 +14,6 @@
                             @include('permissions.fields')
                         {!! Form::close() !!}
                     </div>
-
                 </div>
             </section>
         </div>

@@ -5,6 +5,7 @@ use Ricoa\Auth\Agent\DefaultMenusAgent;
 function can($user,$action){
     //
     $agent=DefaultMenusAgent::getMenuAgent();
+
     if($agent->isSuperAdmin($user)){
         C($action,1);
         return true;
@@ -18,8 +19,8 @@ function can($user,$action){
     if(C($actions[0])!==null){
         return C($actions[0]);
     }
-
     $excepts=config('menus.validateExcept',[]);
+
     if(!$user->can($action)
         && !$user->can($actions[0]."@_ALL")//支持UserController@_ALL形式（匹配UserController@index..等等）
         &&!$user->can($actions[0]."@*".$actions[1]."*")//支持UserController@index-create-store形式
