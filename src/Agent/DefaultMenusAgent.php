@@ -4,14 +4,26 @@ namespace Ricoa\Auth\Agent;
 class DefaultMenusAgent {
 
     /**
+     * @var DefaultMenusAgent
+     */
+    private static $agent=null;
+
+    /**
      * @return DefaultMenusAgent
      */
     static public function getMenuAgent(){
-        try{
-            return app(config('menus.agent'));
-        }catch (\Exception $e){
-            return app(self::class);
+
+        if(self::$agent){
+            return self::$agent;
         }
+
+        try{
+            self::$agent=app(config('menus.agent'));
+        }catch (\Exception $e){
+            self::$agent=app(self::class);
+        }
+
+        return self::$agent;
     }
 
     /**
