@@ -1,13 +1,13 @@
 $(function () {
-    $("input[data-role=search-item]").keypress(function(event){
+    $("input[data-role*=search-item]").keypress(function(event){
         if(event.keyCode==13) {
-            $("[data-role=search]").click();
+            $("[data-role=search][data-search=true]").click();
         }
     });
     $("[data-role=search]").click(function(){
         var search=[];
         var search_field=[];
-        $("[data-role=search-item]").each(function(){
+        $("[data-role*=search-item]").each(function(){
             if($(this).val()){
                 search.push($(this).data("name")+":"+$(this).val());
                 search_field.push($(this).data("name")+":"+$(this).data("express"));

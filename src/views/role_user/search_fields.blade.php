@@ -12,7 +12,7 @@
 
         <input type="hidden" name="search">
         <input type="hidden" name="searchFields">
-        <button type="button" class="btn btn-success" data-role="search">搜索</button>
+        <button type="button" class="btn btn-success" data-role="search" data-search="true">搜索</button>
     </form>
 </div>
 
