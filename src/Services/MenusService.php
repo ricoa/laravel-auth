@@ -3,12 +3,11 @@ namespace Ricoa\Auth\Services;
 
 
 use Ricoa\Auth\Agent\DefaultMenusAgent;
-use Ricoa\Auth\Agent\MenusAgentInterface;
 
 class MenusService{
 
     /**
-     * @var MenusAgentInterface
+     * @var DefaultMenusAgent
      */
     private $agent=null;
 

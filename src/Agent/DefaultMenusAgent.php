@@ -1,7 +1,7 @@
 <?php
 namespace Ricoa\Auth\Agent;
 
-class DefaultMenusAgent implements MenusAgentInterface {
+class DefaultMenusAgent {
 
     /**
      * @return array
