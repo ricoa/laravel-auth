@@ -10,4 +10,16 @@ class DefaultMenusAgent {
     {
         return config('menus.menus');
     }
+
+
+    /**
+     * @return boolean
+     */
+    public function isSuperAdmin($user=null)
+    {
+        if(!$user){
+            return false;
+        }
+        return $user->hasRole(config('menus.super','super'));
+    }
 }

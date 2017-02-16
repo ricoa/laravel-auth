@@ -31,7 +31,7 @@ class MenusService{
     public function menusShow()
     {
         $user=\Auth::user();
-        if($user->hasRole(config('menus.super','super'))){
+        if($this->agent->isSuperAdmin($user)){
             return $this->menus;
         }
         return $this->menusWithAuth($this->menus,$user);
