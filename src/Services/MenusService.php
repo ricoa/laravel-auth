@@ -32,14 +32,14 @@ class MenusService{
     public function menusShow()
     {
         $user=\Auth::user();
+        if($user->hasRole(config('menus.super','super'))){
+            return $this->menus;
+        }
         return $this->menusWithAuth($this->menus,$user);
     }
 
     protected function menusWithAuth($menus,$user){
 
-        if($user->hasRole(config('menus.super','super'))){
-            return $menus;
-        }
         foreach ($menus as $key=> $menu){
             if(isset($menu['action'])){
                 if(!can($user,$menu['action'])){
