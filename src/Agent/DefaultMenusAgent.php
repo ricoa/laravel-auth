@@ -40,9 +40,15 @@ class DefaultMenusAgent {
      */
     public function isSuperAdmin($user=null)
     {
-        if(!$user){
+        if(C('superAdmin')!==null){
+            return C('superAdmin');
+        }
+        if(!$user||!$user->hasRole(config('menus.super','super'))){
+            C('superAdmin',0);
             return false;
         }
-        return $user->hasRole(config('menus.super','super'));
+        C('superAdmin',1);
+
+        return true;
     }
 }

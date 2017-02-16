@@ -1,6 +1,15 @@
 <?php
 
+use Ricoa\Auth\Agent\DefaultMenusAgent;
+
 function can($user,$action){
+    //
+    $agent=DefaultMenusAgent::getMenuAgent();
+    if($agent->isSuperAdmin($user)){
+        C($action,1);
+        return true;
+    }
+
     //判断权限
     $action = str_replace("App\\Http\\Controllers\\","",$action);
     $actions=explode("@",$action);

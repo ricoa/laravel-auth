@@ -31,15 +31,9 @@ class Permission
 	 */
 	public function handle($request, Closure $next)
 	{
-        if ($this->auth->guest() ||
-            (
-                !DefaultMenusAgent::getMenuAgent()->isSuperAdmin($request->user())
-                &&!can($request->user(),Route::currentRouteAction())
-            )
-        ){
+        if ($this->auth->guest() ||!can($request->user(),Route::currentRouteAction())){
             abort(403);
         }
-
 		return $next($request);
 	}
 }
