@@ -5,7 +5,6 @@ namespace Ricoa\Auth\Controllers;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Ricoa\Auth\Criteria\WhereInCriteria;
-use App\Http\Controllers\Controller;
 use DB;
 use Ricoa\Auth\Requests\CreateRoleRequest;
 use Ricoa\Auth\Requests\UpdateRoleRequest;
@@ -18,6 +17,8 @@ class RoleController extends Controller
 {
     /** @var  RoleRepository */
     private $roleRepository;
+    public $index_route='roles.index';
+    public $back_url="roles_back_url";
 
     public function __construct(RoleRepository $roleRepo)
     {
@@ -34,6 +35,8 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $this->rememberUrl($request);
+
         $roles = $this->roleRepository->pushCriteria(new RequestCriteria($request))->paginate(30);
 
         return view('roles.index')
@@ -65,7 +68,7 @@ class RoleController extends Controller
 
         Flash::success('新增成功');
 
-        return redirect(route('roles.index'));
+        return $this->redirectRememberUrl();
     }
 
 
@@ -83,7 +86,7 @@ class RoleController extends Controller
         if (empty($role)) {
             Flash::error('找不到页面');
 
-            return redirect(route('roles.index'));
+            return $this->redirectRememberUrl();
         }
 
         return view('roles.edit')->with('role', $role);
@@ -104,14 +107,14 @@ class RoleController extends Controller
         if (empty($role)) {
             Flash::error('找不到页面');
 
-            return redirect(route('roles.index'));
+            return $this->redirectRememberUrl();
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
 
         Flash::success('编辑成功');
 
-        return redirect(route('roles.index'));
+        return $this->redirectRememberUrl();
     }
 
     /**
@@ -128,14 +131,14 @@ class RoleController extends Controller
         if (empty($role)) {
             Flash::error('找不到页面');
 
-            return redirect(route('roles.index'));
+            return $this->redirectRememberUrl();
         }
 
         $this->roleRepository->delete($id);
 
         Flash::success('删除成功');
 
-        return redirect(route('roles.index'));
+        return $this->redirectRememberUrl();
     }
 
 
@@ -147,7 +150,7 @@ class RoleController extends Controller
         if (empty($role)) {
             Flash::error('找不到页面');
 
-            return redirect(route('roles.index'));
+            return $this->redirectRememberUrl();
         }
 
         $permissionRepository->orderBy('description')->orderBy('display_name');
@@ -171,7 +174,7 @@ class RoleController extends Controller
         if (empty($role)) {
             Flash::error('找不到页面');
 
-            return redirect(route('roles.index'));
+            return $this->redirectRememberUrl();
         }
 
         $ids=\Request::get('permissions',[]);
@@ -186,6 +189,6 @@ class RoleController extends Controller
 
         Flash::success('编辑成功');
 
-        return redirect(route('roles.index'));
+        return $this->redirectRememberUrl();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Ricoa\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -16,6 +15,8 @@ class RoleUserController extends Controller
 {
     /** @var  RoleUserRepository */
     private $roleUserRepository;
+    public $index_route='roles_users.index';
+    public $back_url="roles_users_back_url";
 
     public function __construct(RoleUserRepository $roleUserRepo)
     {
@@ -32,6 +33,8 @@ class RoleUserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->rememberUrl($request);
+
         $role_users = $this->roleUserRepository->pushCriteria(new RequestCriteria($request))->with(['user','role'])->paginate(30);
 
         return view('role_user.index')
@@ -67,7 +70,7 @@ class RoleUserController extends Controller
 
         Flash::success('新增成功');
 
-        return redirect(route('roles_users.index'));
+        return $this->redirectRememberUrl();
     }
 
     /**
@@ -85,7 +88,7 @@ class RoleUserController extends Controller
 
         Flash::success('删除成功');
 
-        return redirect(route('roles_users.index'));
+        return $this->redirectRememberUrl();
     }
 
 }

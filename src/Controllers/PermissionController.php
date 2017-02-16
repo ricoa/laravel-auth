@@ -2,7 +2,6 @@
 
 namespace Ricoa\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Ricoa\Auth\Requests\CreatePermissionRequest;
@@ -15,6 +14,9 @@ class PermissionController extends Controller
 {
     /** @var  PermissionRepository */
     private $permissionRepository;
+
+    public $index_route='permissions.index';
+    public $back_url="permissions_back_url";
 
     public function __construct(PermissionRepository $permissionRepo)
     {
@@ -31,6 +33,8 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
+        $this->rememberUrl($request);
+
         $this->permissionRepository->pushCriteria(new RequestCriteria($request))->orderBy('description')->orderBy('display_name');
         $permissions = $this->permissionRepository->paginate(30);
 
@@ -62,8 +66,7 @@ class PermissionController extends Controller
         $permission = $this->permissionRepository->create($input);
 
         Flash::success('新增成功');
-
-        return redirect(route('permissions.index'));
+        return $this->redirectRememberUrl();
     }
 
 
@@ -80,8 +83,7 @@ class PermissionController extends Controller
 
         if (empty($permission)) {
             Flash::error('找不到页面');
-
-            return redirect(route('permissions.index'));
+            return $this->redirectRememberUrl();
         }
 
         return view('permissions.edit')->with('permission', $permission);
@@ -101,15 +103,13 @@ class PermissionController extends Controller
 
         if (empty($permission)) {
             Flash::error('找不到页面');
-
-            return redirect(route('permissions.index'));
+            return $this->redirectRememberUrl();
         }
 
         $permission = $this->permissionRepository->update($request->all(), $id);
 
         Flash::success('编辑成功');
-
-        return redirect(route('permissions.index'));
+        return $this->redirectRememberUrl();
     }
 
     /**
@@ -125,14 +125,12 @@ class PermissionController extends Controller
 
         if (empty($permission)) {
             Flash::error('找不到页面');
-
-            return redirect(route('permissions.index'));
+            return $this->redirectRememberUrl();
         }
 
         $this->permissionRepository->delete($id);
 
         Flash::success('删除成功');
-
-        return redirect(route('permissions.index'));
+        return $this->redirectRememberUrl();
     }
 }
