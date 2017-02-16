@@ -11,6 +11,11 @@ class User extends Model
 
     public $table = 'users';
 
+
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function beRole($name)
     {
         $admin=Role::where("name",$name)->first();
