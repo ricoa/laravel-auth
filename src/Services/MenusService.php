@@ -13,11 +13,7 @@ class MenusService{
 
     public function __construct()
     {
-        try{
-            $this->agent=app(config('menus.agent'));
-        }catch (\Exception $e){
-            $this->agent=app(DefaultMenusAgent::class);
-        }
+        $this->agent=DefaultMenusAgent::getMenuAgent();
 
         $this->menus=$this->agent->menus();
     }

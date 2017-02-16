@@ -4,6 +4,7 @@ namespace Ricoa\Auth\Middlewares;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Ricoa\Auth\Agent\DefaultMenusAgent;
 use Route;
 
 class Permission
@@ -32,7 +33,7 @@ class Permission
 	{
         if ($this->auth->guest() ||
             (
-                !$request->user()->hasRole(config('menus.super','super'))
+                !DefaultMenusAgent::getMenuAgent()->isSuperAdmin($request->user())
                 &&!can($request->user(),Route::currentRouteAction())
             )
         ){
