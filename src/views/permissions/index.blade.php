@@ -6,7 +6,9 @@
             <section class="panel">
                 <header class="panel-heading">
                     权限
+                    @if(can(\Auth::user(),'\Ricoa\Auth\Controllers\PermissionController@create'))
                     <a class="btn btn-primary pull-right" href="{!! route('permissions.create') !!}">新增</a>
+                    @endif
                     <br><br>
                 </header>
                 <div class="panel-body">

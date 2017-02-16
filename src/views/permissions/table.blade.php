@@ -12,16 +12,19 @@
             <td>{!! $permission->description !!}</td>
             <td>{!! $permission->display_name !!}</td>
             <td>
-                @if(!in_array($permission->name,['admin','super']))
-                    {!! Form::open(['route' => ['permissions.destroy', $permission->id], 'method' => 'delete']) !!}
-                    <div class='btn-group'>
-                        <a href="{!! route('permissions.edit', [$permission->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                    </div>
-                    {!! Form::close() !!}
-                @else
-                    不可修改
-                @endif
+                {!! Form::open(['route' => ['permissions.destroy', $permission->id], 'method' => 'delete']) !!}
+                <div class='btn-group'>
+                    @if(can(\Auth::user(),'\Ricoa\Auth\Controllers\PermissionController@edit'))
+                    <a href="{!! route('permissions.edit', [$permission->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    @endif
+
+                    @if(can(\Auth::user(),'\Ricoa\Auth\Controllers\PermissionController@destroy'))
+                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>',
+                        ['type' => 'submit', 'class' => 'btn btn-danger btn-xs',
+                        'onclick' => "return confirm('Are you sure?')"]) !!}
+                    @endif
+                </div>
+                {!! Form::close() !!}
             </td>
         </tr>
     @endforeach

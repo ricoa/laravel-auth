@@ -10,14 +10,12 @@
             <td>{!! $role_user->user->name !!}</td>
             <td>{!! $role_user->role->display_name !!}</td>
             <td>
-                @if(!in_array($role_user->role->name,['admin','super']))
+                @if(can(\Auth::user(),'\Ricoa\Auth\Controllers\RoleUserController@destroy'))
                 {!! Form::open(['route' => ['roles_users.destroy',$role_user->role_id."-".$role_user->user_id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}
-                @else
-                    不可修改
                 @endif
             </td>
         </tr>

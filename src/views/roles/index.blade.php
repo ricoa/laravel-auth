@@ -6,7 +6,9 @@
             <section class="panel">
                 <header class="panel-heading">
                     角色
+                    @if(can(\Auth::user(),'\Ricoa\Auth\Controllers\RoleController@create'))
                     <a class="btn btn-primary pull-right" href="{!! route('roles.create') !!}">新增</a>
+                    @endif
                     <br><br>
                 </header>
                 <div class="panel-body">
