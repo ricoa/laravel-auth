@@ -43,7 +43,16 @@ class MenusServiceProvider extends ServiceProvider
 
         //视图文件
         $this->publishes([
-            __DIR__ . '/views/' => resource_path('views/'),
+            __DIR__ . '/views/layouts' => resource_path('views/layouts'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/views/permissions' => resource_path('views/permissions'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/views/role_user' => resource_path('views/role_user'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/views/roles' => resource_path('views/roles'),
         ], 'config');
 
         //js

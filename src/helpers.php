@@ -1,6 +1,6 @@
 <?php
 
-use Ricoa\Auth\Agent\DefaultMenusAgent;
+use Ricoa\Auth\Agents\DefaultMenusAgent;
 
 function can($user,$action){
 

@@ -2,7 +2,7 @@
 namespace Ricoa\Auth\Services;
 
 
-use Ricoa\Auth\Agent\DefaultMenusAgent;
+use Ricoa\Auth\Agents\DefaultMenusAgent;
 
 class MenusService{
 

@@ -1,12 +1,12 @@
 {
-    "name": "ricoa/auth",
-    "description": "A quick way to handle menus and permission in Laravel 5",
+    "name": "ricoa/laravel-auth",
+    "description": "一个基于 Laravel5 的后台权限、菜单管理解决方案",
     "keywords": [
         "laravel",
         "permission",
         "menu"
     ],
-    "homepage": "https://github.com/ricoa/auth",
+    "homepage": "https://github.com/ricoa/laravel-auth",
     "authors": [
         {
             "name": "Ricoo",

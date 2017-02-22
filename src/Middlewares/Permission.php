@@ -4,7 +4,7 @@ namespace Ricoa\Auth\Middlewares;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Ricoa\Auth\Agent\DefaultMenusAgent;
+use Ricoa\Auth\Agents\DefaultMenusAgent;
 use Route;
 
 class Permission

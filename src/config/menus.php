@@ -6,7 +6,7 @@ return [
      * 菜单代理，默认代理是从本文件的menus项获取菜单，如果你是用数据库管理菜单，可以
      * 自定义菜单代理，返回相同格式的菜单数组
      */
-    'agent'=>\Ricoa\Auth\Agent\DefaultMenusAgent::class,
+    'agent'=>\Ricoa\Auth\Agents\DefaultMenusAgent::class,
 
     /**
      * 显示菜单的blade

@@ -1,5 +1,5 @@
 <?php
-namespace Ricoa\Auth\Agent;
+namespace Ricoa\Auth\Agents;
 
 class DefaultMenusAgent {
 
