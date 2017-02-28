@@ -18,7 +18,11 @@ class DefaultMenusAgent {
         }
 
         try{
-            self::$agent=app(config('menus.agent'));
+            if(config('menus.agent')){
+                self::$agent=app(config('menus.agent'));
+            }else{
+                throw new \Exception("No Agent", 1);
+            }
         }catch (\Exception $e){
             self::$agent=app(self::class);
         }
